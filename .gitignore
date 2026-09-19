@@ -1,4 +1,10 @@
 target/
+.classpath
+.project
+.settings/
+.idea/
+*.log
+.DS_Storetarget/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
