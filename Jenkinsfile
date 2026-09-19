@@ -4,13 +4,19 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn clean compile'
             }
         }
 
-        stage('Run Automation Tests') {
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -18,17 +24,8 @@ pipeline {
     }
 
     post {
-
         always {
-            echo 'Automation execution completed'
-        }
-
-        success {
-            echo 'Automation tests PASSED'
-        }
-
-        failure {
-            echo 'Automation tests FAILED'
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
